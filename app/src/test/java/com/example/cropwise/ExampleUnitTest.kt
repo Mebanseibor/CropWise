@@ -1,4 +1,4 @@
-package com.example.cse225project
+package com.example.cropwise
 
 import org.junit.Test
 

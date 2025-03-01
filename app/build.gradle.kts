@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.cse225project"
-    compileSdk = 34
+    namespace = "com.example.cropwise"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.cse225project"
+        applicationId = "com.example.cropwise"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
