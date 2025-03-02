@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/themeMainNeutralLight"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24sp"
-        android:text="@string/app_name"
-        android:textColor="@color/themeMainPrimaryDark"
-        android:textSize="40sp"
+    <ImageView
+        android:id="@+id/cropwise_emblem"
+        android:layout_width="320sp"
+        android:layout_height="320sp"
+        android:src="@drawable/cropwise_logo"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_slogan"
-        android:textColor="@color/themeMainPrimaryLight"
-        android:textSize="16sp"
+    <ProgressBar
+        android:id="@+id/prgBar"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:indeterminate="true"
+
+        app:layout_constraintTop_toBottomOf="@id/cropwise_emblem"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
