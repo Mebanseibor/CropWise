@@ -27,7 +27,7 @@
 
 
 ## <p id='content-currentfeatures'>Current features 🌟</p>
-
+None at the moment, check with us later, we'll be hoping to see you then!
 
 
 ## <p id='content-plannedfeatures'>Planned features 🔮</p>
