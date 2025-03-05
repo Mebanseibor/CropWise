@@ -5,4 +5,5 @@
     <string name="mainmenu_category_fav">Favourites</string>
     <string name="mainmenu_category_recent">Recently Used</string>
     <string name="mainmenu_category_advise">Advice</string>
+    <string name="tracking_time_title">Tracking Time</string>
 </resources>
