@@ -2,19 +2,23 @@ package com.example.cropwise
 
 import android.os.Bundle
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.SurfaceControl.Transaction
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentContainer
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 
 class MainActivity : AppCompatActivity() {
     // views
-    private lateinit var mainToolBar_title : TextView
+    private lateinit var mainActionBar : androidx.appcompat.widget.Toolbar
     private lateinit var fragCon_main : View
 
 
@@ -45,16 +49,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews(){
-        mainToolBar_title = findViewById(R.id.mainToolBar_title)
+        fun initActionBar(){
+            mainActionBar = findViewById(R.id.main_toolBar)
+            setSupportActionBar(mainActionBar)
+        }
+
+        initActionBar()
         fragCon_main = findViewById(R.id.fragCon_main)
     }
 
-    private fun initToolBar(){
-        mainToolBar_title.setOnClickListener {
-            fun displayToast(){
-                var toastView = layoutInflater.inflate(R.layout.toast_custom, findViewById(R.id.fragCon_main), false)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_toolbar, menu)
+        return true
+    }
 
-                var toast = Toast(this)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val itemSelected = when(item.itemId){
+            R.id.menu_item_home -> {
+                loadFragment(Fragment_MainMenu_Category())
+                true
+            }
+            else -> {super.onOptionsItemSelected(item)}
+        }
+        return itemSelected
+    }
+
+    private fun initToolBar(){
+        mainActionBar.setOnClickListener {
+            fun displayToast(){
+                val toastView = layoutInflater.inflate(R.layout.toast_custom, findViewById(R.id.fragCon_main), false)
+
+                val toast = Toast(this)
                 toast.duration = Toast.LENGTH_SHORT
                 toast.view = toastView
                 toast.setGravity(Gravity.CENTER_VERTICAL, 0, 100)
