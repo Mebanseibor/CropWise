@@ -6,20 +6,20 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.cropwise.actionbar.initToolBar
 import com.example.cropwise.fragment.Fragment_MainMenu_Category
 import com.example.cropwise.fragment.Fragment_Tracking_Time
-import com.example.cropwise.fragment.loadFragment
+import com.example.cropwise.fragment.mainFragment
+
+
+// fragments
+lateinit var mainFragment : mainFragment
 
 class MainActivity : AppCompatActivity() {
     // views
     private lateinit var mainActionBar : androidx.appcompat.widget.Toolbar
     private lateinit var fragCon_main : View
-
-    // fragments
-    private lateinit var transactionMain : FragmentTransaction
 
 
     // debug views
@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         initDebug()
         initViews()
+        mainFragment = mainFragment(this.supportFragmentManager)
         initToolBar(this, mainActionBar)
         initCategory()
         initDisplayMainCategory()
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         btnDebugTracking = findViewById(R.id.btnTracking)
 
         btnDebugTracking.setOnClickListener {
-            loadFragment(Fragment_Tracking_Time())
+            mainFragment.loadFragment(Fragment_Tracking_Time())
         }
     }
 
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val itemSelected = when(item.itemId){
             R.id.menu_item_home -> {
-                loadFragment(Fragment_MainMenu_Category())
+                mainFragment.loadFragment(Fragment_MainMenu_Category())
                 true
             }
             else -> {super.onOptionsItemSelected(item)}
@@ -78,6 +79,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initDisplayMainCategory(){
-        loadFragment(Fragment_MainMenu_Category())
+        mainFragment.loadFragment(Fragment_MainMenu_Category())
     }
 }

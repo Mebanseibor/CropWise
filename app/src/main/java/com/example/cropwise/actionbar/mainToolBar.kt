@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.cropwise.R
 import com.example.cropwise.fragment.Fragment_MainMenu_Category
-import com.example.cropwise.fragment.loadFragment
+import com.example.cropwise.mainFragment
 
 fun initToolBar(context: Context, mainActionBar : Toolbar){
     mainActionBar.setOnLongClickListener{
@@ -26,6 +26,6 @@ fun initToolBar(context: Context, mainActionBar : Toolbar){
     }
 
     mainActionBar.setOnClickListener{
-        loadFragment(Fragment_MainMenu_Category())
+        mainFragment.loadFragment(Fragment_MainMenu_Category())
     }
 }

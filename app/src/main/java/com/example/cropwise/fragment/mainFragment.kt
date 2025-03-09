@@ -1,11 +1,20 @@
 package com.example.cropwise.fragment
 
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.cropwise.R
 
-lateinit var transactionMain : FragmentTransaction
+class mainFragment(fragmentManager : FragmentManager){
+    public lateinit var transactionMain : FragmentTransaction
+    public lateinit var fragmentManager : FragmentManager
 
-fun loadFragment(fragment: androidx.fragment.app.Fragment){
-    transactionMain.replace(R.id.fragCon_main, fragment)
-    transactionMain.commit()
+    init {
+        this.fragmentManager = fragmentManager
+    }
+
+    fun loadFragment(fragment: androidx.fragment.app.Fragment){
+        this.transactionMain = fragmentManager.beginTransaction()
+        this.transactionMain.replace(R.id.fragCon_main, fragment)
+        this.transactionMain.commit()
+    }
 }
