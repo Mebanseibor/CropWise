@@ -3,11 +3,11 @@ package com.example.cropwise
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cropwise.actionbar.mainToolBar
-import com.example.cropwise.fragment.Fragment_Tracking_Time
+import com.example.cropwise.fragment.Advice_Crops
+import com.example.cropwise.fragment.Tracking_Time
 import com.example.cropwise.fragment.mainFragmentContainer
 
 
@@ -16,9 +16,6 @@ lateinit var mainFragmentContainer : mainFragmentContainer
 lateinit var mainToolBar : mainToolBar
 
 class MainActivity : AppCompatActivity() {
-    // views
-    private lateinit var fragCon_main : View
-
     // debug views
     private lateinit var btnDebugAdvice : Button
     private lateinit var btnDebugFP : Button
@@ -29,9 +26,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initDebug()
-        initViews()
 
-        mainFragmentContainer = mainFragmentContainer(this.supportFragmentManager)
+        mainFragmentContainer = mainFragmentContainer(this, findViewById(R.id.fragCon_main), this.supportFragmentManager)
         mainFragmentContainer.loadCategory()
 
         mainToolBar = mainToolBar(this, findViewById(R.id.main_toolBar))
@@ -44,12 +40,12 @@ class MainActivity : AppCompatActivity() {
         btnDebugTracking = findViewById(R.id.btnTracking)
 
         btnDebugTracking.setOnClickListener {
-            mainFragmentContainer.loadFragment(Fragment_Tracking_Time())
+            mainFragmentContainer.loadFragment(Tracking_Time())
         }
-    }
 
-    private fun initViews(){
-        fragCon_main = findViewById(R.id.fragCon_main)
+        btnDebugAdvice.setOnClickListener {
+            mainFragmentContainer.loadAdvice()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -7,13 +7,12 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.cropwise.R
-import com.example.cropwise.fragment.Fragment_MainMenu_Category
+import com.example.cropwise.fragment.MainMenu_Category
 import com.example.cropwise.mainFragmentContainer
 
-class mainToolBar(context : Context , mainActionBar : Toolbar){
+class mainToolBar(private val context : Context , mainActionBar : Toolbar){
     lateinit var mainActionBar : Toolbar
     var menu : Int = R.menu.main_toolbar
-
 
     init {
         this.mainActionBar = mainActionBar
@@ -34,14 +33,14 @@ class mainToolBar(context : Context , mainActionBar : Toolbar){
         }
 
         mainActionBar.setOnClickListener{
-            mainFragmentContainer.loadFragment(Fragment_MainMenu_Category())
+            mainFragmentContainer.loadFragment(MainMenu_Category())
         }
     }
 
     fun setOnOptionsItemSelected(item : MenuItem) : Boolean{
         val itemSelected = when(item.itemId){
             R.id.menu_item_home -> {
-                mainFragmentContainer.loadFragment(Fragment_MainMenu_Category())
+                mainFragmentContainer.loadFragment(MainMenu_Category())
                 true
             }
             else -> {true}

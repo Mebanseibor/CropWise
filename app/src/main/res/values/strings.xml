@@ -6,4 +6,5 @@
     <string name="mainmenu_category_recent">Recently Used</string>
     <string name="mainmenu_category_advise">Advice</string>
     <string name="tracking_time_title">Tracking Time</string>
+    <string name="advice_crops_title">Advice on Crops</string>
 </resources>
