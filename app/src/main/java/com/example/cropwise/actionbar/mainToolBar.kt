@@ -1,6 +1,7 @@
 package com.example.cropwise.actionbar
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -26,9 +27,13 @@ class mainToolBar(private val context : Context , mainActionBar : Toolbar){
                 toast.view = toastView
                 toast.setGravity(Gravity.CENTER_VERTICAL, 0, 100)
                 toast.show()
+
+                val audio = MediaPlayer.create(context, R.raw.audio_pop)
+                audio.start()
             }
 
             displayToast()
+
             true
         }
 

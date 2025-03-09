@@ -1,12 +1,14 @@
 package com.example.cropwise
 
+import android.app.NotificationManager
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cropwise.actionbar.mainToolBar
-import com.example.cropwise.fragment.Advice_Crops
+import com.example.cropwise.notification.mainNotification
 import com.example.cropwise.fragment.Tracking_Time
 import com.example.cropwise.fragment.mainFragmentContainer
 
@@ -14,11 +16,12 @@ import com.example.cropwise.fragment.mainFragmentContainer
 // objects
 lateinit var mainFragmentContainer : mainFragmentContainer
 lateinit var mainToolBar : mainToolBar
+lateinit var mainNotification : mainNotification
 
 class MainActivity : AppCompatActivity() {
     // debug views
     private lateinit var btnDebugAdvice : Button
-    private lateinit var btnDebugFP : Button
+    private lateinit var btnDebugPF : Button
     private lateinit var btnDebugTracking : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,11 +35,14 @@ class MainActivity : AppCompatActivity() {
 
         mainToolBar = mainToolBar(this, findViewById(R.id.main_toolBar))
         setSupportActionBar(mainToolBar.mainActionBar)
+
+        mainNotification = mainNotification(this)
+        mainNotification.managerNotification = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     }
 
     private fun initDebug(){
         btnDebugAdvice = findViewById(R.id.btnAdvice)
-        btnDebugFP = findViewById(R.id.btnPrecisionFarming)
+        btnDebugPF = findViewById(R.id.btnPrecisionFarming)
         btnDebugTracking = findViewById(R.id.btnTracking)
 
         btnDebugTracking.setOnClickListener {
@@ -45,6 +51,10 @@ class MainActivity : AppCompatActivity() {
 
         btnDebugAdvice.setOnClickListener {
             mainFragmentContainer.loadAdvice()
+        }
+
+        btnDebugPF.setOnClickListener {
+            mainNotification.sendNotification()
         }
     }
 
