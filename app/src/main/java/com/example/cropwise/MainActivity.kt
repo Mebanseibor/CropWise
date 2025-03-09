@@ -1,25 +1,25 @@
 package com.example.cropwise
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.SurfaceControl.Transaction
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toolbar
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentContainer
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.cropwise.actionbar.initToolBar
+import com.example.cropwise.fragment.Fragment_MainMenu_Category
+import com.example.cropwise.fragment.Fragment_Tracking_Time
+import com.example.cropwise.fragment.loadFragment
 
 class MainActivity : AppCompatActivity() {
     // views
     private lateinit var mainActionBar : androidx.appcompat.widget.Toolbar
     private lateinit var fragCon_main : View
+
+    // fragments
+    private lateinit var transactionMain : FragmentTransaction
 
 
     // debug views
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         initDebug()
         initViews()
-        initToolBar()
+        initToolBar(this, mainActionBar)
         initCategory()
         initDisplayMainCategory()
     }
@@ -74,34 +74,7 @@ class MainActivity : AppCompatActivity() {
         return itemSelected
     }
 
-    private fun initToolBar(){
-        mainActionBar.setOnLongClickListener{
-            fun displayToast(){
-                val toastView = layoutInflater.inflate(R.layout.toast_custom, findViewById(R.id.fragCon_main), false)
-
-                val toast = Toast(this)
-                toast.duration = Toast.LENGTH_SHORT
-                toast.view = toastView
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 100)
-                toast.show()
-            }
-
-            displayToast()
-            true
-        }
-
-        mainActionBar.setOnClickListener{
-            loadFragment(Fragment_MainMenu_Category())
-        }
-    }
-
     private fun initCategory(){
-    }
-
-    private fun loadFragment(fragment: androidx.fragment.app.Fragment){
-        val transactionMain = supportFragmentManager.beginTransaction()
-        transactionMain.replace(R.id.fragCon_main, fragment)
-        transactionMain.commit()
     }
 
     private fun initDisplayMainCategory(){
