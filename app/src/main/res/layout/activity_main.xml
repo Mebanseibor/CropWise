@@ -17,7 +17,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/main_toolBar"
             android:layout_width="match_parent"
-            android:layout_height="48sp"
+            android:layout_height="64sp"
             android:elevation="4sp"
             android:background="@color/themeMainPrimaryLight"
             />
@@ -25,7 +25,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragCon_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"/>
 
         <LinearLayout

@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initToolBar(){
-        mainActionBar.setOnClickListener {
+        mainActionBar.setOnLongClickListener{
             fun displayToast(){
                 val toastView = layoutInflater.inflate(R.layout.toast_custom, findViewById(R.id.fragCon_main), false)
 
@@ -87,6 +87,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             displayToast()
+            true
+        }
+
+        mainActionBar.setOnClickListener{
             loadFragment(Fragment_MainMenu_Category())
         }
     }
