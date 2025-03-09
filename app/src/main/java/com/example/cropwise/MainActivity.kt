@@ -6,21 +6,18 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
-import com.example.cropwise.actionbar.initToolBar
-import com.example.cropwise.fragment.Fragment_MainMenu_Category
+import com.example.cropwise.actionbar.mainToolBar
 import com.example.cropwise.fragment.Fragment_Tracking_Time
-import com.example.cropwise.fragment.mainFragment
+import com.example.cropwise.fragment.mainFragmentContainer
 
 
-// fragments
-lateinit var mainFragment : mainFragment
+// objects
+lateinit var mainFragmentContainer : mainFragmentContainer
+lateinit var mainToolBar : mainToolBar
 
 class MainActivity : AppCompatActivity() {
     // views
-    private lateinit var mainActionBar : androidx.appcompat.widget.Toolbar
     private lateinit var fragCon_main : View
-
 
     // debug views
     private lateinit var btnDebugAdvice : Button
@@ -33,10 +30,12 @@ class MainActivity : AppCompatActivity() {
 
         initDebug()
         initViews()
-        mainFragment = mainFragment(this.supportFragmentManager)
-        initToolBar(this, mainActionBar)
-        initCategory()
-        initDisplayMainCategory()
+
+        mainFragmentContainer = mainFragmentContainer(this.supportFragmentManager)
+        mainFragmentContainer.loadCategory()
+
+        mainToolBar = mainToolBar(this, findViewById(R.id.main_toolBar))
+        setSupportActionBar(mainToolBar.mainActionBar)
     }
 
     private fun initDebug(){
@@ -45,40 +44,20 @@ class MainActivity : AppCompatActivity() {
         btnDebugTracking = findViewById(R.id.btnTracking)
 
         btnDebugTracking.setOnClickListener {
-            mainFragment.loadFragment(Fragment_Tracking_Time())
+            mainFragmentContainer.loadFragment(Fragment_Tracking_Time())
         }
     }
 
     private fun initViews(){
-        fun initActionBar(){
-            mainActionBar = findViewById(R.id.main_toolBar)
-            setSupportActionBar(mainActionBar)
-        }
-
-        initActionBar()
         fragCon_main = findViewById(R.id.fragCon_main)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_toolbar, menu)
+        menuInflater.inflate(mainToolBar.menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val itemSelected = when(item.itemId){
-            R.id.menu_item_home -> {
-                mainFragment.loadFragment(Fragment_MainMenu_Category())
-                true
-            }
-            else -> {super.onOptionsItemSelected(item)}
-        }
-        return itemSelected
-    }
-
-    private fun initCategory(){
-    }
-
-    private fun initDisplayMainCategory(){
-        mainFragment.loadFragment(Fragment_MainMenu_Category())
+        return mainToolBar.setOnOptionsItemSelected(item)
     }
 }

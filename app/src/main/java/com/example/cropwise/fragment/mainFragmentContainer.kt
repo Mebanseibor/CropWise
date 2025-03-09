@@ -4,7 +4,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.cropwise.R
 
-class mainFragment(fragmentManager : FragmentManager){
+class mainFragmentContainer(fragmentManager : FragmentManager){
     public lateinit var transactionMain : FragmentTransaction
     public lateinit var fragmentManager : FragmentManager
 
@@ -16,5 +16,9 @@ class mainFragment(fragmentManager : FragmentManager){
         this.transactionMain = fragmentManager.beginTransaction()
         this.transactionMain.replace(R.id.fragCon_main, fragment)
         this.transactionMain.commit()
+    }
+
+    fun loadCategory(){
+        loadFragment(Fragment_MainMenu_Category())
     }
 }
