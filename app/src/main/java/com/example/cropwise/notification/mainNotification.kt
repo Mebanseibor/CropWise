@@ -47,7 +47,6 @@ class mainNotification(private val context : Context) {
 
         this.managerNotification.notify(this.Id, notification)
         Log.d("mainNotification", "Notification was sent")
-        this.sound.start()
 
         this.Id += 1
     }

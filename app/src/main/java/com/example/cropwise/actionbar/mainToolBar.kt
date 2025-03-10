@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.cropwise.R
 import com.example.cropwise.fragment.MainMenu_Category
 import com.example.cropwise.mainFragmentContainer
+import com.example.cropwise.toast.displayAboutApp
 
 class mainToolBar(private val context : Context , mainActionBar : Toolbar){
     lateinit var mainActionBar : Toolbar
@@ -19,20 +20,7 @@ class mainToolBar(private val context : Context , mainActionBar : Toolbar){
         this.mainActionBar = mainActionBar
 
         mainActionBar.setOnLongClickListener{
-            fun displayToast(){
-                val toastView = LayoutInflater.from(context).inflate(R.layout.toast_custom, null, false)
-
-                val toast = Toast(context)
-                toast.duration = Toast.LENGTH_SHORT
-                toast.view = toastView
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 100)
-                toast.show()
-
-                val audio = MediaPlayer.create(context, R.raw.audio_pop)
-                audio.start()
-            }
-
-            displayToast()
+            displayAboutApp(context)
 
             true
         }

@@ -47,10 +47,12 @@ class MainActivity : AppCompatActivity() {
 
         btnDebugTracking.setOnClickListener {
             mainFragmentContainer.loadFragment(Tracking_Time())
+            mainToolBar.mainActionBar.title = "Tracking"
         }
 
         btnDebugAdvice.setOnClickListener {
             mainFragmentContainer.loadAdvice()
+            mainToolBar.mainActionBar.title = "Advice"
         }
 
         btnDebugPF.setOnClickListener {
