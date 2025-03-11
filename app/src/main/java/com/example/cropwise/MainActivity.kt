@@ -2,6 +2,7 @@ package com.example.cropwise
 
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -56,7 +57,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnDebugPF.setOnClickListener {
-            mainNotification.sendNotification()
+            mainNotification.sendNormal("Normal Notification", "Jump nowhere")
+
+            var temp1 = Intent(this, SplashScreenActivity::class.java)
+            mainNotification.sendNormal("Normal Notification", "Jump to SplashScreenActivity", temp1)
+
+            var temp2 = Intent(this, MainActivity::class.java)
+            mainNotification.sendNormal("Normal Notification", "Jump to MainActivity", temp2)
+
+            mainNotification.sendReminder("Watering the crops", "This is a reminder to water your crops!")
         }
     }
 
