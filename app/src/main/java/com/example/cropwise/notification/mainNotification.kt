@@ -1,5 +1,6 @@
 package com.example.cropwise.notification
 
+import android.app.Activity
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -16,11 +17,12 @@ import androidx.core.app.NotificationCompat
 import com.example.cropwise.MainActivity
 import com.example.cropwise.R
 
-class mainNotification(private val context : Context) {
+class mainNotification(activity : Activity) {
     lateinit var managerNotification : NotificationManager
     var channelID : String
     var title : String
     var description : String
+    var activity : Activity
     lateinit var remoteExpandedViews : RemoteViews
     var sound : MediaPlayer
     var audioAttr : AudioAttributes
@@ -28,11 +30,12 @@ class mainNotification(private val context : Context) {
     var Id : Int = 0
 
     init{
+        this.activity = activity
         this.channelID = "This is the Channel ID"
         this.title = "This is the Title"
         this.description = "This is the Description"
         this.key = "This is the Key"
-        this.sound = MediaPlayer.create(context, R.raw.audio_pop)
+        this.sound = MediaPlayer.create(activity.baseContext, R.raw.audio_pop)
         this.audioAttr = AudioAttributes.Builder()
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .setUsage(AudioAttributes.USAGE_NOTIFICATION)
@@ -40,46 +43,47 @@ class mainNotification(private val context : Context) {
     }
 
     fun sendNormal(title : String, description : String, intent : Intent? = null){
-        this.title = title
-        this.description = description
-
         fun buildNotification(pendingIntent : PendingIntent? = null) : Notification{
-            var tempNtf = NotificationCompat.Builder(context, this.channelID)
-                .setSmallIcon(R.drawable.cropwise_logo)
-                .setContentTitle(title)
-                .setContentText(description)
-                .setSound(Uri.parse("android.resource://" + context.packageName + "/" + R.raw.audio_pop))
+            val notification = NotificationCompat.Builder(activity.baseContext, this.channelID)
+                .setSmallIcon(R.drawable.baseline_notifications_24)
+                .setContentTitle(this.title)
+                .setContentText(this.description)
+                .setSound(Uri.parse("android.resource://" + activity.baseContext.packageName + "/" + R.raw.audio_pop))
                 .setAutoCancel(true)
-
-            if (pendingIntent != null) {tempNtf.setContentIntent(pendingIntent)}
-
-            var notification = tempNtf.build()
+                .apply{
+                    if (pendingIntent != null) {setContentIntent(pendingIntent)}
+                }
+                .build()
 
             return notification
         }
 
-        var pendingIntent : PendingIntent? = null
+        this.title = title
+        this.description = description
 
+        var pendingIntent : PendingIntent? = null
         if (intent != null) {
-            pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+            pendingIntent = PendingIntent.getActivity(activity.baseContext, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         }
 
         val notification = buildNotification(pendingIntent)
 
-        val channel = NotificationChannel(this.channelID, this.title, NotificationManager.IMPORTANCE_DEFAULT)
-            .apply{}
+        val channel = NotificationChannel(this.channelID, "Normal", NotificationManager.IMPORTANCE_DEFAULT)
+            .apply{
+                this.description = this@mainNotification.description
+            }
 
         createNotificationChannel(channel)
 
         this.managerNotification.notify(this.Id, notification)
         Log.d("mainNotification", "Notification was sent")
 
-        this.Id += 1
+        this.Id++
     }
 
     fun sendReminder(title : String, description : String){
         fun reminderNotification(pendingIntent : PendingIntent) : Notification{
-            val notification = NotificationCompat.Builder(context, this.channelID)
+            val notification = NotificationCompat.Builder(activity.baseContext, this.channelID)
                 .setContentTitle(this.title)
                 .setContentText(this.description)
                 .setSmallIcon(R.drawable.baseline_alarm_24)
@@ -93,13 +97,15 @@ class mainNotification(private val context : Context) {
         this.channelID = "Reminder"
         this.title = title
         this.description = description
-        this.sound = MediaPlayer.create(context, R.raw.audio_notification)
+        this.sound = MediaPlayer.create(activity.baseContext, R.raw.audio_notification)
 
-        val intent = Intent(context, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val intent = Intent(activity.baseContext, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getActivity(activity.baseContext, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
-        val channel = NotificationChannel(this.channelID, this.title, NotificationManager.IMPORTANCE_DEFAULT)
-            .apply{}
+        val channel = NotificationChannel(this.channelID, "Reminders", NotificationManager.IMPORTANCE_DEFAULT)
+            .apply{
+                this.description = this@mainNotification.description
+            }
 
         createNotificationChannel(channel)
         val notification = reminderNotification(pendingIntent)
@@ -107,20 +113,20 @@ class mainNotification(private val context : Context) {
         this.managerNotification.notify(this.Id, notification)
         Log.d("reminderNotification", "Reminder Notification was sent")
 
-        this.Id += 1
+        this.Id++
     }
 
-    fun sendAlert(title : String, description : String, image : Int? = null){
+    fun sendAlert(title : String, description : String, intent : Intent? = null){
         fun alertNotification(pendingIntent : PendingIntent? = null) : Notification{
-            var tempNtf = NotificationCompat.Builder(context, this.channelID)
+            val notification = NotificationCompat.Builder(activity.baseContext, this.channelID)
                 .setContentTitle(this.title)
                 .setContentText(this.description)
-                .setSmallIcon(R.drawable.baseline_newspaper_24)
+                .setSmallIcon(R.drawable.baseline_notification_important_24)
                 .setAutoCancel(true)
-
-            if(image != null){}
-
-            val notification = tempNtf.build()
+                .apply{
+                    if(intent != null){setContentIntent(pendingIntent)}
+                }
+                .build()
 
             return notification
         }
@@ -128,14 +134,24 @@ class mainNotification(private val context : Context) {
         this.channelID = "Alert"
         this.title = title
         this.description = description
-        this.sound = MediaPlayer.create(context, R.raw.audio_alert)
+        this.sound = MediaPlayer.create(activity.baseContext, R.raw.audio_alert)
 
 
-        val channel = NotificationChannel(this.channelID, this.title, NotificationManager.IMPORTANCE_DEFAULT)
-            .apply{}
+        var pendingIntent : PendingIntent? = null
+        if (intent != null) {
+            pendingIntent = PendingIntent.getActivity(activity.baseContext, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        }
+
+
+        val channel = NotificationChannel(this.channelID, "Alert", NotificationManager.IMPORTANCE_HIGH)
+            .apply{
+                this.description = this@mainNotification.description
+            }
 
         createNotificationChannel(channel)
-        this.managerNotification.notify(this.Id, alertNotification())
+        this.managerNotification.notify(this.Id, alertNotification(pendingIntent))
+
+        this.Id++;
     }
 
 

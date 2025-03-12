@@ -1,5 +1,6 @@
 package com.example.cropwise.fragment
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.View
@@ -7,15 +8,15 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.cropwise.R
 
-class mainFragmentContainer(context: Context, fragmentContainer : View, fragmentManager : FragmentManager){
+class mainFragmentContainer(activity: Activity, fragmentContainer : View, fragmentManager : FragmentManager){
     public lateinit var transactionMain : FragmentTransaction
     public lateinit var fragmentManager : FragmentManager
     public lateinit var fragmentContainer : View
-    public lateinit var context : Context
+    public lateinit var activity : Activity
 
 
     init {
-        this.context = context
+        this.activity = activity
         this.fragmentManager = fragmentManager
         this.fragmentContainer = fragmentContainer
     }
@@ -46,6 +47,6 @@ class mainFragmentContainer(context: Context, fragmentContainer : View, fragment
     }
 
     fun loadAdvice(){
-        loadFragment(Advice_Crops(this.context))
+        loadFragment(Advice_Crops(activity.baseContext))
     }
 }

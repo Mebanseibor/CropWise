@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="64sp"
             android:elevation="4sp"
-            android:background="@color/themeMainPrimaryLight"
+            android:background="@color/themeMainPrimaryDark"
             />
 
         <androidx.fragment.app.FragmentContainerView
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="64sp"
             android:gravity="center"
-            android:background="@color/themeMainPrimaryLight"
+            android:background="@color/themeMainPrimaryDark"
             android:paddingHorizontal="8sp"
             android:paddingVertical="4sp"
             >

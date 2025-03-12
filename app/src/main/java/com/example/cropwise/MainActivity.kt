@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         mainFragmentContainer = mainFragmentContainer(this, findViewById(R.id.fragCon_main), this.supportFragmentManager)
         mainFragmentContainer.loadCategory()
 
-        mainToolBar = mainToolBar(this, findViewById(R.id.main_toolBar), this)
+        mainToolBar = mainToolBar(this, findViewById(R.id.main_toolBar))
         setSupportActionBar(mainToolBar.mainActionBar)
 
         mainNotification = mainNotification(this)
@@ -67,8 +67,9 @@ class MainActivity : AppCompatActivity() {
             mainNotification.sendNormal("Normal Notification", "Jump to MainActivity", temp2)
 
             mainNotification.sendReminder("Watering the crops", "This is a reminder to water your crops!")
-            
-            mainNotification.sendAlert("Weather Alert", "Heavy Rain is expected in your area")
+
+            var temp3 = Intent(this, NotificationActivity::class.java)
+            mainNotification.sendAlert("Weather Alert", "Heavy Rain is expected in your area", temp3)
         }
     }
 

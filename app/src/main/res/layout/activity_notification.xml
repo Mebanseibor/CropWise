@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:background="@color/themeMainNeutralLight"
     >
 
     <TextView
@@ -15,7 +16,45 @@
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160sp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="2sp"
+        >
+
+        <Button
+            android:id="@+id/debugNtfNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Normal"
+            android:paddingHorizontal="8sp"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/debugNtfReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Reminder"
+            android:paddingHorizontal="8sp"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:id="@+id/debugNtfAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Alert"
+            android:paddingHorizontal="8sp"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>
