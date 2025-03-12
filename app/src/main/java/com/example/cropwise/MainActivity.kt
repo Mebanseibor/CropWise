@@ -12,6 +12,7 @@ import com.example.cropwise.actionbar.mainToolBar
 import com.example.cropwise.notification.mainNotification
 import com.example.cropwise.fragment.Tracking_Time
 import com.example.cropwise.fragment.mainFragmentContainer
+import com.example.cropwise.notification.NotificationActivity
 
 
 // objects
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         mainFragmentContainer = mainFragmentContainer(this, findViewById(R.id.fragCon_main), this.supportFragmentManager)
         mainFragmentContainer.loadCategory()
 
-        mainToolBar = mainToolBar(this, findViewById(R.id.main_toolBar))
+        mainToolBar = mainToolBar(this, findViewById(R.id.main_toolBar), this)
         setSupportActionBar(mainToolBar.mainActionBar)
 
         mainNotification = mainNotification(this)
@@ -66,6 +67,8 @@ class MainActivity : AppCompatActivity() {
             mainNotification.sendNormal("Normal Notification", "Jump to MainActivity", temp2)
 
             mainNotification.sendReminder("Watering the crops", "This is a reminder to water your crops!")
+            
+            mainNotification.sendAlert("Weather Alert", "Heavy Rain is expected in your area")
         }
     }
 

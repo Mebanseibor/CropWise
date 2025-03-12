@@ -11,11 +11,21 @@
         />
 
     <item
+        android:id="@+id/menu_item_notification"
+        android:title="Notification"
+        android:tooltipText="Navigates to Notification Panel"
+        android:icon="@drawable/baseline_notifications_24"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        />
+
+
+    <item
         android:id="@+id/menu_item_settings"
         android:title="Settings"
         android:tooltipText="Navigates to Settings"
         android:icon="@drawable/baseline_settings_24"
-        android:orderInCategory="101"
+        android:orderInCategory="102"
         app:showAsAction="always"
         />
 </menu>

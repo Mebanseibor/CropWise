@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="redLight">#FFcc5555</color>
     <color name="themeMainPrimaryLight">#FFa8e063</color>
     <color name="themeMainPrimaryDark">#FF56ab2f</color>
     <color name="themeMainNeutralLight">#FFe9e9e9</color>

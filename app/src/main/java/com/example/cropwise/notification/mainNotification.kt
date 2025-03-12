@@ -16,7 +16,7 @@ import androidx.core.app.NotificationCompat
 import com.example.cropwise.MainActivity
 import com.example.cropwise.R
 
-open class mainNotification(private val context : Context) {
+class mainNotification(private val context : Context) {
     lateinit var managerNotification : NotificationManager
     var channelID : String
     var title : String
@@ -40,7 +40,6 @@ open class mainNotification(private val context : Context) {
     }
 
     fun sendNormal(title : String, description : String, intent : Intent? = null){
-
         this.title = title
         this.description = description
 
@@ -67,7 +66,11 @@ open class mainNotification(private val context : Context) {
 
         val notification = buildNotification(pendingIntent)
 
-        createNotificationChannel()
+        val channel = NotificationChannel(this.channelID, this.title, NotificationManager.IMPORTANCE_DEFAULT)
+            .apply{}
+
+        createNotificationChannel(channel)
+
         this.managerNotification.notify(this.Id, notification)
         Log.d("mainNotification", "Notification was sent")
 
@@ -95,7 +98,10 @@ open class mainNotification(private val context : Context) {
         val intent = Intent(context, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
-        createNotificationChannel()
+        val channel = NotificationChannel(this.channelID, this.title, NotificationManager.IMPORTANCE_DEFAULT)
+            .apply{}
+
+        createNotificationChannel(channel)
         val notification = reminderNotification(pendingIntent)
 
         this.managerNotification.notify(this.Id, notification)
@@ -104,11 +110,37 @@ open class mainNotification(private val context : Context) {
         this.Id += 1
     }
 
-    private fun createNotificationChannel(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(this.channelID, this.title, NotificationManager.IMPORTANCE_DEFAULT)
-                .apply {description = this@mainNotification.description}
+    fun sendAlert(title : String, description : String, image : Int? = null){
+        fun alertNotification(pendingIntent : PendingIntent? = null) : Notification{
+            var tempNtf = NotificationCompat.Builder(context, this.channelID)
+                .setContentTitle(this.title)
+                .setContentText(this.description)
+                .setSmallIcon(R.drawable.baseline_newspaper_24)
+                .setAutoCancel(true)
 
+            if(image != null){}
+
+            val notification = tempNtf.build()
+
+            return notification
+        }
+
+        this.channelID = "Alert"
+        this.title = title
+        this.description = description
+        this.sound = MediaPlayer.create(context, R.raw.audio_alert)
+
+
+        val channel = NotificationChannel(this.channelID, this.title, NotificationManager.IMPORTANCE_DEFAULT)
+            .apply{}
+
+        createNotificationChannel(channel)
+        this.managerNotification.notify(this.Id, alertNotification())
+    }
+
+
+    private fun createNotificationChannel(channel : NotificationChannel){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             managerNotification.createNotificationChannel(channel)
         }
     }

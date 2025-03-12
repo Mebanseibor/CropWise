@@ -34,28 +34,30 @@
             android:layout_height="64sp"
             android:gravity="center"
             android:background="@color/themeMainPrimaryLight"
+            android:paddingHorizontal="8sp"
+            android:paddingVertical="4sp"
             >
 
             <Button
                 android:id="@+id/btnAdvice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120sp"
+                android:layout_height="match_parent"
                 android:text="Advice"
                 android:layout_weight="1"
                 />
 
             <Button
                 android:id="@+id/btnPrecisionFarming"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120sp"
+                android:layout_height="match_parent"
                 android:text="Precision Farming"
                 android:layout_weight="1"
                 />
 
             <Button
                 android:id="@+id/btnTracking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120sp"
+                android:layout_height="match_parent"
                 android:text="Tracking"
                 android:layout_weight="1"
                 />
