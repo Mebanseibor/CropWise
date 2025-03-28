@@ -1,6 +1,7 @@
 package com.example.cropwise.fragment
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -19,14 +20,29 @@ class mainFragmentContainer(context: Context, fragmentContainer : View, fragment
         this.fragmentContainer = fragmentContainer
     }
 
-    fun loadFragment(fragment: androidx.fragment.app.Fragment){
+    fun loadFragment(fragment: androidx.fragment.app.Fragment, isBase: Boolean = false) {
+        // clears the backstack
+        if (isBase) {
+            while (fragmentManager.backStackEntryCount > 0) {
+                fragmentManager.popBackStackImmediate()
+                Log.d("loadFragment", "Clearing backStack")
+            }
+        }
+
         this.transactionMain = fragmentManager.beginTransaction()
         this.transactionMain.replace(R.id.fragCon_main, fragment)
+
+        if (!isBase) {
+            this.transactionMain.addToBackStack(null)
+            Log.d("loadFragment", "Adding to backStack")
+        }
+
         this.transactionMain.commit()
     }
 
+
     fun loadCategory(){
-        loadFragment(MainMenu_Category())
+        loadFragment(MainMenu_Category(), true)
     }
 
     fun loadAdvice(){

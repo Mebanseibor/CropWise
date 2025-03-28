@@ -20,3 +20,7 @@ fun displayAboutApp(context : Context) {
     val audio = MediaPlayer.create(context, R.raw.audio_pop)
     audio.start()
 }
+
+fun displayComingSoon(context : Context, feature : String = "Default feature"){
+    Toast.makeText(context, feature + " coming soon" , Toast.LENGTH_SHORT).show()
+}

@@ -11,6 +11,7 @@ import com.example.cropwise.R
 import com.example.cropwise.fragment.MainMenu_Category
 import com.example.cropwise.mainFragmentContainer
 import com.example.cropwise.toast.displayAboutApp
+import com.example.cropwise.toast.displayComingSoon
 
 class mainToolBar(private val context : Context , mainActionBar : Toolbar){
     lateinit var mainActionBar : Toolbar
@@ -33,7 +34,11 @@ class mainToolBar(private val context : Context , mainActionBar : Toolbar){
     fun setOnOptionsItemSelected(item : MenuItem) : Boolean{
         val itemSelected = when(item.itemId){
             R.id.menu_item_home -> {
-                mainFragmentContainer.loadFragment(MainMenu_Category())
+                mainFragmentContainer.loadCategory()
+                true
+            }
+            R.id.menu_item_settings -> {
+                displayComingSoon(context, "Settings")
                 true
             }
             else -> {true}
