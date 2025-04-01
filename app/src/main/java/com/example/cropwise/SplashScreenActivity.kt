@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 
 class SplashScreenActivity : AppCompatActivity(){
     private lateinit var cropwiseEmblem : ImageView
@@ -16,12 +17,13 @@ class SplashScreenActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_splashscreen)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         initFindViews()
         initAnimation()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }, 4000)
