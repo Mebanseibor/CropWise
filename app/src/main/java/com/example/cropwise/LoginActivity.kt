@@ -1,10 +1,13 @@
 package com.example.cropwise
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -29,9 +32,13 @@ class LoginActivity : AppCompatActivity() {
 
         val textView = findViewById<TextView>(R.id.textView)
 
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+
         textView.setOnClickListener {
 
             var intent = Intent(this, RegisterActivity::class.java);
+
+
 
             startActivity(intent);
 
@@ -41,6 +48,10 @@ class LoginActivity : AppCompatActivity() {
 
             val email = findViewById<EditText>(R.id.editTextTextEmailAddress)
             val password = findViewById<EditText>(R.id.editTextTextPassword)
+
+            hideKeyboard()
+
+            progressBar.visibility = ProgressBar.VISIBLE;
 
             if (email.text.isBlank() || password.text.isBlank()) {
                 Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
@@ -95,5 +106,16 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error fetching user data", Toast.LENGTH_SHORT).show()
                 Log.e("LoginActivity", "Error fetching user data", e)
             }
+    }
+
+    private fun hideKeyboard() {
+        // Get the currently focused view
+        val view = currentFocus
+        if (view != null) {
+            // Get the InputMethodManager system service
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            // Hide the keyboard
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 }

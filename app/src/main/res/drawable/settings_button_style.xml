@@ -1,0 +1,7 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="36dp"/>  <!-- Makes the button rounded -->
+    <solid android:color="#D3D3D3"/>  <!-- Background color of the button -->
+    <padding android:left="12dp" android:right="12dp"/>
+    <size android:width="150dp" android:height="150dp"/>
+    <!-- Adds some internal padding -->
+</shape>
