@@ -9,9 +9,12 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.firebase.auth.FirebaseAuth
 
 class SplashScreenActivity : AppCompatActivity(){
     private lateinit var cropwiseEmblem : ImageView
+
+    val auth = FirebaseAuth.getInstance();
 
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
@@ -23,9 +26,7 @@ class SplashScreenActivity : AppCompatActivity(){
         initAnimation()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            checkUserSession()
         }, 4000)
     }
 
@@ -39,5 +40,17 @@ class SplashScreenActivity : AppCompatActivity(){
             cropwiseEmblem.startAnimation(animZoom)
         }
         animateEmblem()
+    }
+
+    private fun checkUserSession() {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            // User is logged in, go to HomeActivity
+            startActivity(Intent(this, MainActivity::class.java))
+        } else {
+            // No user logged in, go to LoginActivity
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+        finish() // Close SplashScreenActivity
     }
 }
