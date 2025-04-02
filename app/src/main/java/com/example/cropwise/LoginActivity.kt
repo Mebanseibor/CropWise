@@ -22,6 +22,8 @@ class LoginActivity : AppCompatActivity() {
     val auth = FirebaseAuth.getInstance()
     val db = FirebaseFirestore.getInstance()
 
+    lateinit var progressBar : ProgressBar
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
         val textView = findViewById<TextView>(R.id.textView)
 
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
         textView.setOnClickListener {
 
@@ -83,6 +85,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 } else {
                     Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility = ProgressBar.INVISIBLE;
                     Log.e("LoginActivity", "Login failed", task.exception)
                 }
             }
