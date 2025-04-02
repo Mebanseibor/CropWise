@@ -31,10 +31,18 @@ class SettingsActivity : AppCompatActivity() {
         username = findViewById(R.id.username)
         email = findViewById(R.id.email)
 
+        val deleteAccount = findViewById<Button>(R.id.account_delete)
+
         fetchUser()
 
         logout.setOnClickListener {
             logout()
+        }
+
+        deleteAccount.setOnClickListener {
+
+            accountDelete();
+
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -74,5 +82,31 @@ class SettingsActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Toast.makeText(this, "Error fetching user data", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun accountDelete()
+    {
+        val user = auth.currentUser
+
+        if(user != null)
+        {
+            db.collection("user").document(user.uid).delete()
+                .addOnSuccessListener {
+                    user.delete().addOnSuccessListener {
+                        Toast.makeText(this, "Account deleted", Toast.LENGTH_SHORT).show()
+                        logout()
+                        finish()
+                    } .addOnFailureListener {
+                        Toast.makeText(this, "Error deleting account", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+                .addOnFailureListener{
+
+                    Toast.makeText(this, "Error deleting account", Toast.LENGTH_SHORT).show()
+
+                }
+
+        }
     }
 }
