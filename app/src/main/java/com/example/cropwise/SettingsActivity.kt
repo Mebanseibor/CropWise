@@ -33,6 +33,8 @@ class SettingsActivity : AppCompatActivity() {
 
         val deleteAccount = findViewById<Button>(R.id.account_delete)
 
+        val changeProfile = findViewById<Button>(R.id.editProfile)
+
         fetchUser()
 
         logout.setOnClickListener {
@@ -42,6 +44,12 @@ class SettingsActivity : AppCompatActivity() {
         deleteAccount.setOnClickListener {
 
             accountDelete();
+
+        }
+
+        changeProfile.setOnClickListener{
+
+            editProfile();
 
         }
 
@@ -108,5 +116,10 @@ class SettingsActivity : AppCompatActivity() {
                 }
 
         }
+    }
+    private fun editProfile()
+    {
+        val intent = Intent(this, EditProfileActivity::class.java);
+        startActivity(intent);
     }
 }
