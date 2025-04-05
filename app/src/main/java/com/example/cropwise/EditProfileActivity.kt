@@ -2,11 +2,14 @@ package com.example.cropwise
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -26,16 +29,20 @@ class EditProfileActivity : AppCompatActivity() {
 
         val buttonSave = findViewById<Button>(R.id.buttonSave)
         val editTextName = findViewById<EditText>(R.id.username)
-//        val editPassword = findViewById<EditText>(R.id.password)
+
+        val changePassword = findViewById<Button>(R.id.changePassword)
+        val changeEmail = findViewById<Button>(R.id.changeEmail)
 
         val userRef = db.collection("users").document(user!!.uid);
 
         buttonSave.isEnabled = false;
 
+
+
         userRef.get().addOnSuccessListener { document->
 
             val originalUsername = document.getString("username");
-            val originalEmail = document.getString("email");
+
 
             editTextName.setText(document.getString("username"))
 
@@ -70,6 +77,16 @@ class EditProfileActivity : AppCompatActivity() {
             editUser(newName);
         }
 
+        changePassword.setOnClickListener {
+
+
+
+        }
+
+        changeEmail.setOnClickListener {
+            showChangeEmailDialog()
+        }
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -93,20 +110,60 @@ class EditProfileActivity : AppCompatActivity() {
 
             };
 
-//            user.verifyBeforeUpdateEmail(email)
-//                .addOnSuccessListener {
-//                    // Also update Firestore to keep it consistent
-//                    userRef.update("email", email)
-//                        .addOnSuccessListener {
-//                            Toast.makeText(this, "Email updated successfully", Toast.LENGTH_SHORT).show()
-//                        }
-//                        .addOnFailureListener {
-//                            Toast.makeText(this, "Firestore email update failed", Toast.LENGTH_SHORT).show()
-//                        }
-//                }
-//                .addOnFailureListener { e ->
-//                    Toast.makeText(this, "Error updating email in Authentication: ${e.message}", Toast.LENGTH_SHORT).show()
-//                }
+
         }
     }
+
+    private fun showChangeEmailDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Change Email")
+
+        val input = EditText(this)
+        input.hint = "Enter new email"
+        input.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        input.setPadding(40, 20, 40, 20)
+
+        builder.setView(input)
+
+        builder.setPositiveButton("Submit") { dialog, _ ->
+            val newEmail = input.text.toString().trim()
+            if (newEmail.isNotEmpty()) {
+                updateEmail(newEmail)
+            } else {
+                Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show()
+            }
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+    }
+
+    fun updateEmail(email:String)
+    {
+        if(user != null)
+        {
+            val userRef = db.collection("users").document(user.uid);
+            user.verifyBeforeUpdateEmail(email)
+                .addOnSuccessListener {
+                    // Also update Firestore to keep it consistent
+                    userRef.update("email", email)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Check your new email for verification link", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Firestore email update failed", Toast.LENGTH_SHORT).show()
+                        }
+                }
+                .addOnFailureListener { e ->
+                    Log.d("Error", e.message.toString());
+                    Toast.makeText(this, "Error updating email in Authentication: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+    }
+
 }
