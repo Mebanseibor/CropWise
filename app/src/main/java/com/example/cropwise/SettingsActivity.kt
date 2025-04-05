@@ -43,7 +43,7 @@ class SettingsActivity : AppCompatActivity() {
 
         deleteAccount.setOnClickListener {
 
-            accountDelete();
+            showDeleteAccountDialog()
 
         }
 
@@ -92,34 +92,101 @@ class SettingsActivity : AppCompatActivity() {
             }
     }
 
-    private fun accountDelete()
-    {
-        val user = auth.currentUser
+//    private fun accountDelete()
+//    {
+//        val user = auth.currentUser
+//
+//        if(user != null)
+//        {
+//            db.collection("user").document(user.uid).delete()
+//                .addOnSuccessListener {
+//                    user.delete().addOnSuccessListener {
+//                        Toast.makeText(this, "Account deleted", Toast.LENGTH_SHORT).show()
+//                        logout()
+//                        finish()
+//                    } .addOnFailureListener {
+//                        Toast.makeText(this, "Error deleting account", Toast.LENGTH_SHORT).show()
+//                    }
+//
+//                }
+//                .addOnFailureListener{
+//
+//                    Toast.makeText(this, "Error deleting account", Toast.LENGTH_SHORT).show()
+//
+//                }
+//
+//        }
+//    }
 
-        if(user != null)
-        {
-            db.collection("user").document(user.uid).delete()
-                .addOnSuccessListener {
-                    user.delete().addOnSuccessListener {
-                        Toast.makeText(this, "Account deleted", Toast.LENGTH_SHORT).show()
-                        logout()
-                        finish()
-                    } .addOnFailureListener {
-                        Toast.makeText(this, "Error deleting account", Toast.LENGTH_SHORT).show()
-                    }
-
-                }
-                .addOnFailureListener{
-
-                    Toast.makeText(this, "Error deleting account", Toast.LENGTH_SHORT).show()
-
-                }
-
-        }
-    }
     private fun editProfile()
     {
         val intent = Intent(this, EditProfileActivity::class.java);
         startActivity(intent);
     }
+
+    private fun confirmAccountDelete(password: String) {
+        val user = auth.currentUser
+
+        if (user != null && user.email != null) {
+            val credential = com.google.firebase.auth.EmailAuthProvider.getCredential(user.email!!, password)
+
+            user.reauthenticate(credential)
+                .addOnSuccessListener {
+                    // User authenticated successfully, now delete
+                    db.collection("users").document(user.uid).delete()
+                        .addOnSuccessListener {
+                            user.delete()
+                                .addOnSuccessListener {
+                                    Toast.makeText(this, "Account deleted successfully", Toast.LENGTH_SHORT).show()
+                                    logout()
+                                }
+                                .addOnFailureListener { e ->
+                                    Toast.makeText(this, "Error deleting account: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error deleting user data: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Authentication failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun showDeleteAccountDialog() {
+        val builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle("Confirm Account Deletion")
+
+        val layout = android.widget.LinearLayout(this)
+        layout.orientation = android.widget.LinearLayout.VERTICAL
+        layout.setPadding(50, 40, 50, 10)
+
+        val passwordInput = android.widget.EditText(this)
+        passwordInput.hint = "Enter your Password"
+        passwordInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+        layout.addView(passwordInput)
+
+        builder.setView(layout)
+
+        builder.setPositiveButton("Delete") { _, _ ->
+            val password = passwordInput.text.toString()
+
+            if (password.isEmpty()) {
+                Toast.makeText(this, "Password cannot be empty", Toast.LENGTH_SHORT).show()
+            } else {
+                confirmAccountDelete(password)
+            }
+        }
+
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+    }
+
 }

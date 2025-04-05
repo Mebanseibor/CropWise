@@ -1,5 +1,6 @@
 package com.example.cropwise
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -87,6 +88,11 @@ class EditProfileActivity : AppCompatActivity() {
             showChangeEmailDialog()
         }
 
+        changePassword.setOnClickListener{
+
+            showChangePasswordDialog();
+
+        }
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -166,4 +172,66 @@ class EditProfileActivity : AppCompatActivity() {
 
     }
 
+    private fun changePassword(newPassword:String)
+    {
+        val user = auth.currentUser
+
+        if (user != null) {
+            user.updatePassword(newPassword)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Password updated successfully", Toast.LENGTH_SHORT).show()
+                    auth.signOut();
+
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Clears back stack
+                    startActivity(intent)
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error updating password: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun showChangePasswordDialog() {
+        val builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle("Change Password")
+
+        val layout = android.widget.LinearLayout(this)
+        layout.orientation = android.widget.LinearLayout.VERTICAL
+        layout.setPadding(50, 40, 50, 10)
+
+        val newPasswordInput = android.widget.EditText(this)
+        newPasswordInput.hint = "Enter New Password"
+        newPasswordInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+        layout.addView(newPasswordInput)
+
+        val confirmPasswordInput = android.widget.EditText(this)
+        confirmPasswordInput.hint = "Confirm New Password"
+        confirmPasswordInput.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+        layout.addView(confirmPasswordInput)
+
+        builder.setView(layout)
+
+        builder.setPositiveButton("Submit") { _, _ ->
+            val newPassword = newPasswordInput.text.toString()
+            val confirmPassword = confirmPasswordInput.text.toString()
+
+            if (newPassword.isEmpty() || confirmPassword.isEmpty()) {
+                Toast.makeText(this, "Please fill both fields", Toast.LENGTH_SHORT).show()
+            } else if (newPassword != confirmPassword) {
+                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+            } else {
+                changePassword(newPassword)
+            }
+        }
+
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+    }
 }
