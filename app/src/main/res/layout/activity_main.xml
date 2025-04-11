@@ -18,12 +18,12 @@
             android:id="@+id/main_toolBar"
             android:layout_width="match_parent"
             android:layout_height="64sp"
-            android:elevation="4sp"
             android:background="@color/themeMainPrimaryLight"
+            app:contentInsetStart="0dp"
             />
 
         <fragment
-            android:id="@+id/frament"
+            android:id="@+id/fragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"

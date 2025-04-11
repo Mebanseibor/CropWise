@@ -7,14 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cropwise.R
 
-class Tracking_Time : Fragment(){
+class Track_Time : Fragment(){
+    // fragment
+    var frag : View? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_tracking_time, container, false)
+        frag = inflater.inflate(R.layout.fragment_tracking_time, container, false)
 
-        return view
+        return frag
     }
 }

@@ -27,7 +27,7 @@ class Advice : AppCompatActivity() {
 
         initView()
 
-        loadAdvice(inputCategory)
+        loadAdvice()
     }
 
     private fun initGetExtras(){
@@ -43,12 +43,8 @@ class Advice : AppCompatActivity() {
         frameLayout = findViewById(R.id.frameLayout)
     }
 
-    private fun loadAdvice(inputCategory : String = "default"){
-        var category = inputCategory
-
-        if (category == "default"){category = "Crops"}
-
-        val frag = getFragment(category)
+    private fun loadAdvice(){
+        val frag = getFragment(inputCategory)
 
         fragMng = supportFragmentManager
         fragMng.beginTransaction()

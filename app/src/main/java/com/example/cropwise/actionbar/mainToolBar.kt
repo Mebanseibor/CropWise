@@ -3,6 +3,7 @@ package com.example.cropwise.actionbar
 import android.content.Context
 import android.content.Intent
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cropwise.GO
 import com.example.cropwise.R
 import com.example.cropwise.SettingsActivity
@@ -12,6 +13,12 @@ import com.example.cropwise.toast.displayComingSoon
 class mainToolBar(private val context : Context){
 
     init {
+        GO.mainActionBar.setNavigationIcon(R.drawable.baseline_arrow_back_24)
+
+        GO.mainActionBar.setNavigationOnClickListener{
+            (context as? AppCompatActivity)?.onBackPressed()
+        }
+
         GO.mainActionBar.setOnLongClickListener{
             displayAboutApp(context)
             true
