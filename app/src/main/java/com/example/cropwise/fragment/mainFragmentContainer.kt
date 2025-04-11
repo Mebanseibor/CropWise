@@ -30,7 +30,9 @@ class mainFragmentContainer(context: Context, fragmentContainer : View, fragment
         }
 
         this.transactionMain = fragmentManager.beginTransaction()
-        this.transactionMain.replace(R.id.fragCon_main, fragment)
+
+        // TODO: Uncomment this after a relevant for this use is found
+//        this.transactionMain.replace(R.id.fragCon_main, fragment)
 
         if (!isBase) {
             this.transactionMain.addToBackStack(null)

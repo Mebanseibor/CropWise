@@ -13,48 +13,63 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="12sp"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingVertical="16sp"
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/mainmenu_category_fav"
+                    android:text="@string/mainmenu_category_advise"
                     android:textSize="24sp"
+                    android:paddingStart="8sp"
+                    android:paddingEnd="8sp"
                     />
 
-                <LinearLayout
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+                    android:layout_height="wrap_content">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="48sp"
-                        android:layout_weight="1"
-                        android:text="BtnA"
-                        />
+                    <LinearLayout
+                        android:layout_width="0sp"
+                        android:layout_height="64sp"
+                        android:gravity="center_horizontal">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="48sp"
-                        android:layout_weight="1"
-                        android:text="BtnB"
-                        />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAdviceA"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="Crops"
+                            />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="48sp"
-                        android:layout_weight="1"
-                        android:text="BtnC"
-                        />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAdviceB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="Soil"
+                            />
 
-                </LinearLayout>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAdviceC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="Supplements"
+                            />
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
 
             </LinearLayout>
 
@@ -63,84 +78,54 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_weight="1"
+                android:paddingVertical="16sp"
                 >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mainmenu_category_recent"
-                    android:textSize="24sp"
-                    />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="48sp"
-                        android:layout_weight="1"
-                        android:text="BtnA"
-                        />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="48sp"
-                        android:layout_weight="1"
-                        android:text="BtnB"
-                        />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="48sp"
-                        android:layout_weight="1"
-                        android:text="BtnC"
-                        />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/mainmenu_category_advise"
+                    android:text="@string/mainmenu_category_tracking"
                     android:textSize="24sp"
+                    android:paddingStart="8sp"
+                    android:paddingEnd="8sp"
                     />
 
-                <LinearLayout
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal">
+                    android:layout_height="wrap_content">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="48sp"
-                        android:layout_weight="1"
-                        android:text="BtnA"
-                        />
+                    <LinearLayout
+                        android:layout_width="0sp"
+                        android:layout_height="64sp"
+                        android:gravity="center_horizontal">
 
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="48sp"
-                        android:layout_weight="1"
-                        android:text="BtnB"
-                        />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTrackingA"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="Time"
+                            />
 
-                    <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="48sp"
-                        android:layout_weight="1"
-                        android:text="BtnC"
-                        />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTrackingB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="Sun Angle"
+                            />
 
-                </LinearLayout>
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnTrackingC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="Growing Seasonal"
+                            />
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
 
             </LinearLayout>
 

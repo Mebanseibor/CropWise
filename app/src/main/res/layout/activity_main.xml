@@ -22,45 +22,13 @@
             android:background="@color/themeMainPrimaryLight"
             />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragCon_main"
+        <fragment
+            android:id="@+id/frament"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <LinearLayout
-            android:id="@+id/footer"
-            android:layout_width="match_parent"
-            android:layout_height="64sp"
-            android:gravity="center"
-            android:background="@color/themeMainPrimaryLight"
-            >
-
-            <Button
-                android:id="@+id/btnAdvice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Advice"
-                android:layout_weight="1"
-                />
-
-            <Button
-                android:id="@+id/btnPrecisionFarming"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Precision Farming"
-                android:layout_weight="1"
-                />
-
-            <Button
-                android:id="@+id/btnTracking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tracking"
-                android:layout_weight="1"
-                />
-
-        </LinearLayout>
+            android:layout_weight="1"
+            class="com.example.cropwise.fragment.MainMenu_Category"
+            />
 
     </LinearLayout>
 
