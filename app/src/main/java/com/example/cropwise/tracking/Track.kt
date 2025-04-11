@@ -3,6 +3,7 @@ package com.example.cropwise.tracking
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.cropwise.R
 import com.example.cropwise.fragment.Tracking_Time
@@ -21,13 +22,23 @@ class Track : AppCompatActivity() {
 
         initViews()
 
-        fragMng = supportFragmentManager
-        fragMng.beginTransaction()
-            .replace(frameLayout.id, Tracking_Time())
-            .commit()
+        loadTracking()
     }
 
     private fun initViews(){
         frameLayout = findViewById(R.id.frameLayout)
+    }
+
+    private fun loadTracking(inputCategory : String = "default"){
+        var category = inputCategory
+
+        if(inputCategory == "default"){category == "Time"}
+
+        var fragment : Fragment = Tracking_Time()
+
+        fragMng = supportFragmentManager
+        fragMng.beginTransaction()
+            .replace(frameLayout.id, fragment)
+            .commit()
     }
 }

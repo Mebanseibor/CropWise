@@ -52,12 +52,17 @@ class MainMenu_Category : Fragment(){
             startActivity(intent)
         }
 
+        btnAdviceB.setOnClickListener{
+            val intent = Intent(activity, Advice::class.java)
+            intent.putExtra("inputCategory", "Soil")
+            startActivity(intent)
+        }
+
         btnTrackingA.setOnClickListener{
             val intent = Intent(activity, Track::class.java)
             startActivity(intent)
         }
 
-        btnAdviceB.setOnClickListener{displayComingSoon(requireContext(), "Soil")}
         btnAdviceC.setOnClickListener{displayComingSoon(requireContext(), "Supplements")}
 
         btnTrackingB.setOnClickListener{displayComingSoon(requireContext(), "Sun Angle")}
