@@ -60,4 +60,6 @@ class Track : AppCompatActivity() {
         if(category == "Sun Angle"){return Track_SunAngle()}
         else{return Track_Time()}
     }
+
+
 }
