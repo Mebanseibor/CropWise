@@ -2,6 +2,7 @@ package com.example.cropwise.advice
 
 import android.os.Bundle
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import com.example.cropwise.R
