@@ -55,6 +55,11 @@
             android:exported="true" >
         </activity>
 
+        <activity
+            android:name=".rating.AppRating"
+            android:exported="true" >
+        </activity>
+
 
     </application>
 

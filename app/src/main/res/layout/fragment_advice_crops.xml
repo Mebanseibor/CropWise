@@ -8,10 +8,14 @@
 
     <TextView
         android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Default Advice Title"
         android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="@color/themeMainPrimaryLight"
+        android:textAlignment="center"
+        android:padding="24sp"
         />
 
     <com.google.android.material.search.SearchBar

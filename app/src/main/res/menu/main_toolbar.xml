@@ -12,11 +12,21 @@
         />
 
     <item
+        android:id="@+id/menu_item_rating"
+        android:title="App Rating"
+        android:tooltipText="Navigates to App Rating"
+        android:icon="@drawable/baseline_star_rate_24"
+        android:orderInCategory="101"
+        app:showAsAction="always"
+        />
+
+    <item
         android:id="@+id/menu_item_settings"
         android:title="Settings"
         android:tooltipText="Navigates to Settings"
         android:icon="@drawable/baseline_settings_24"
-        android:orderInCategory="101"
+        android:orderInCategory="200"
         app:showAsAction="always"
         />
+
 </menu>
