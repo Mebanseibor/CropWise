@@ -39,6 +39,9 @@ class Advice_Crops(private val context: Context) : Fragment() {
         fetchAdviceFromFirestore()
         updateTitle()
 
+        val footerView = layoutInflater.inflate(R.layout.footer_advice, null)
+        listView.addFooterView(footerView)
+
         return frag
     }
 

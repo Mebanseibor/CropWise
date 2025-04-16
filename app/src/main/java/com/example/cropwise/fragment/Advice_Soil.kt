@@ -47,6 +47,9 @@ class Advice_Soil(private val context : Context) : Fragment() {
 
         adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, list)
         listView.adapter = adapter
+
+        val footerView = layoutInflater.inflate(R.layout.footer_advice, null)
+        listView.addFooterView(footerView)
     }
 
     private fun updateTitle(){
