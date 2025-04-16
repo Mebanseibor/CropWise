@@ -12,7 +12,7 @@
     <color name="ratingBar_primary">#FF808080</color>
     <color name="ratingBar_secondary">#FFFFFF00</color>
 
-    <color name="failure">#FFEF3B36</color>
+    <color name="failure">#FFDC143C</color>
     <color name="success">#FF45a247</color>
     <color name="cancel">#FFff9966</color>
     <color name="light_gray">#F5F5F5</color>

@@ -26,6 +26,7 @@ class SettingsActivity : AppCompatActivity() {
 
     // views
     private lateinit var toolbar : Toolbar
+    private lateinit var headerTitle : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,11 +67,21 @@ class SettingsActivity : AppCompatActivity() {
             insets
         }
 
+        initView()
         initToolbar()
+        initHeader()
+    }
+
+    private fun initView(){
+        toolbar = findViewById(R.id.toolBar_setting)
+        headerTitle = findViewById(R.id.headerTitle)
+    }
+
+    private fun initHeader(){
+        headerTitle.text = "Settings"
     }
 
     private fun initToolbar(){
-        toolbar = findViewById(R.id.toolBar_setting)
         setSupportActionBar(toolbar)
     }
 
