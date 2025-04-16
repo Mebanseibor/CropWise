@@ -3,6 +3,7 @@ package com.example.cropwise
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,13 @@ class MainActivity : AppCompatActivity() {
 
         mainNotification = mainNotification(this)
         mainNotification.managerNotification = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        greetTheUser()
+        Log.d("Main Activity", "END of override fun onCreate")
+    }
+
+    private fun greetTheUser(){
+        mainNotification.sendNormal("Greetings!", "Welcome Back")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

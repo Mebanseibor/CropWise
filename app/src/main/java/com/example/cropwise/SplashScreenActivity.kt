@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -46,11 +47,14 @@ class SplashScreenActivity : AppCompatActivity(){
         val currentUser = auth.currentUser
         if (currentUser != null) {
             // User is logged in, go to HomeActivity
+            Log.d("SplashScreenActivity", "Intending into MainActivity")
             startActivity(Intent(this, MainActivity::class.java))
         } else {
             // No user logged in, go to LoginActivity
+            Log.d("SplashScreenActivity", "Intending into LoginActivity")
             startActivity(Intent(this, LoginActivity::class.java))
         }
+        Log.d("SplashScreenActivity", "Finishing the activity")
         finish() // Close SplashScreenActivity
     }
 }

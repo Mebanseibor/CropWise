@@ -16,7 +16,7 @@ import androidx.core.app.NotificationCompat
 import com.example.cropwise.MainActivity
 import com.example.cropwise.R
 
-open class mainNotification(private val context : Context) {
+class mainNotification(private val context : Context) {
     lateinit var managerNotification : NotificationManager
     var channelID : String
     var title : String
