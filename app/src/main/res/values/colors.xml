@@ -8,4 +8,11 @@
     <color name="themeMainNeutralMedium">#FF9a9a9a</color>
     <color name="themeMainNeutralDark">#FF454545</color>
     <color name="toastBackdrop">#44000000</color>
+
+    <color name="ratingBar_primary">#FF808080</color>
+    <color name="ratingBar_secondary">#FFFFFF00</color>
+
+    <color name="failure">#FFEF3B36</color>
+    <color name="success">#FF45a247</color>
+    <color name="cancel">#FFff9966</color>
 </resources>

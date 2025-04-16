@@ -2,6 +2,7 @@ package com.example.cropwise.toast
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -23,4 +24,9 @@ fun displayAboutApp(context : Context) {
 
 fun displayComingSoon(context : Context, feature : String = "Default feature"){
     Toast.makeText(context, feature + " coming soon" , Toast.LENGTH_SHORT).show()
+}
+
+fun displayPermissionNotGranted(context : Context , permission : String = "Default permission"){
+    Toast.makeText(context, "Permission not Granted\n${permission}" , Toast.LENGTH_SHORT).show()
+    Log.d("toast", "Permission not Granted\t${permission}")
 }

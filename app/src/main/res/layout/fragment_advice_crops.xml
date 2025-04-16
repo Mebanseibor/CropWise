@@ -7,10 +7,15 @@
     android:gravity="center_horizontal">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/advice_crops_title"
+        android:text="Default Advice Title"
         android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="@color/themeMainPrimaryLight"
+        android:textAlignment="center"
+        android:padding="24sp"
         />
 
     <com.google.android.material.search.SearchBar
