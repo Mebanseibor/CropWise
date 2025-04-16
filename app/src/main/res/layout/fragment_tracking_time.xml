@@ -10,18 +10,6 @@
         android:orientation="vertical"
         >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tracking_time_title"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:background="@color/themeMainPrimaryLight"
-            android:textAlignment="center"
-            android:padding="24sp"
-            />
-
-
         <CalendarView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

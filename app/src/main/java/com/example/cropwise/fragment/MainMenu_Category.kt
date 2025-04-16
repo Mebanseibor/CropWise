@@ -49,6 +49,7 @@ class MainMenu_Category : Fragment(){
 
         btnAdviceA.setOnClickListener{
             val intent = Intent(activity, Advice::class.java)
+            intent.putExtra("inputCategory", "Crops")
             startActivity(intent)
         }
 
@@ -60,6 +61,7 @@ class MainMenu_Category : Fragment(){
 
         btnTrackingA.setOnClickListener{
             val intent = Intent(activity, Track::class.java)
+            intent.putExtra("inputCategory", "Time")
             startActivity(intent)
         }
 
