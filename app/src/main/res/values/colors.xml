@@ -15,4 +15,9 @@
     <color name="failure">#FFEF3B36</color>
     <color name="success">#FF45a247</color>
     <color name="cancel">#FFff9966</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="red">#D32F2F</color>
+    <color name="dark_gray">#757575</color>
+
+
 </resources>
