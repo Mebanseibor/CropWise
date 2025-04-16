@@ -118,8 +118,7 @@ class SettingsActivity : AppCompatActivity() {
 //        }
 //    }
 
-    private fun editProfile()
-    {
+    private fun editProfile() {
         val intent = Intent(this, EditProfileActivity::class.java);
         startActivity(intent);
     }

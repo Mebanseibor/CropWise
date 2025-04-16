@@ -1,136 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical"
+    android:background="#F0F4F8"
+    android:padding="16dp">
+
+    <!-- Decorative Header (Optional) -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@drawable/header_wave"
+        android:scaleType="fitXY" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        >
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="12sp"
-            >
+            android:paddingBottom="24dp">
 
-            <LinearLayout
+            <!-- 🥬 ADVICE SECTION -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:paddingVertical="16sp"
-                >
+                android:layout_marginTop="16dp"
+                android:elevation="6dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="@android:color/white">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mainmenu_category_advise"
-                    android:textSize="24sp"
-                    android:paddingStart="8sp"
-                    android:paddingEnd="8sp"
-                    />
-
-                <HorizontalScrollView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <LinearLayout
-                        android:layout_width="0sp"
-                        android:layout_height="64sp"
-                        android:gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mainmenu_category_advise"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#263238"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="8dp" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnAdviceA"
+                    <TextView
+                        android:text="Popular"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/tag_background"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:textSize="12sp"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="12dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content" />
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="Crops"
-                            />
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnAdviceB"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="Soil"
-                            />
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:id="@+id/btnAdviceA"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="8dp"
+                                android:text="Crops" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnAdviceC"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="Supplements"
-                            />
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:id="@+id/btnAdviceB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="8dp"
+                                android:text="Soil" />
 
-                    </LinearLayout>
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:id="@+id/btnAdviceC"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:text="Supplements" />
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                </HorizontalScrollView>
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="16dp"
+                android:background="#DDDDDD" />
 
-            </LinearLayout>
-
-            <LinearLayout
+            <!-- ☀️ TRACKING SECTION -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:paddingVertical="16sp"
-                >
+                android:elevation="6dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="@android:color/white">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mainmenu_category_tracking"
-                    android:textSize="24sp"
-                    android:paddingStart="8sp"
-                    android:paddingEnd="8sp"
-                    />
-
-                <HorizontalScrollView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <LinearLayout
-                        android:layout_width="0sp"
-                        android:layout_height="64sp"
-                        android:gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mainmenu_category_tracking"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#263238"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="8dp" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnTrackingA"
+                    <TextView
+                        android:text="Seasonal Tools"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/tag_background"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:textSize="12sp"
+                        android:layout_gravity="start"
+                        android:layout_marginBottom="12dp"  android:layout_height="wrap_content" android:layout_width="wrap_content"/>
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="Time"
-                            />
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnTrackingB"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="Sun Angle"
-                            />
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:id="@+id/btnTrackingA"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="8dp"
+                                android:text="Time" />
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnTrackingC"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:text="Growing Seasonal"
-                            />
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:id="@+id/btnTrackingB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="8dp"
+                                android:text="Sun Angle" />
 
-                    </LinearLayout>
-
-                </HorizontalScrollView>
-
-            </LinearLayout>
-
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:id="@+id/btnTrackingC"
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:text="Growing Seasonal" />
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>
