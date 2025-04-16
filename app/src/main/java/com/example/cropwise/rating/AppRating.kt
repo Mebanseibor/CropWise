@@ -35,10 +35,15 @@ class AppRating : AppCompatActivity(){
         initViews()
 
         initRatingBar()
+        initToolBar()
+    }
 
+    private fun initToolBar(){
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.main_toolBar_appRating)
         setSupportActionBar(toolbar)
         mainToolBar(this, toolbar)
+
+        toolbar.subtitle = "App Rating"
     }
 
     private fun initFetchSharedPreferences(){

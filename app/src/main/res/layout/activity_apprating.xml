@@ -14,17 +14,6 @@
         app:contentInsetStart="0dp"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="App Rating"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:background="@color/themeMainPrimaryLight"
-        android:textAlignment="center"
-        android:padding="24sp"
-        />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

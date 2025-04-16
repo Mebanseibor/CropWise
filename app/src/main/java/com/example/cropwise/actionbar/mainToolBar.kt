@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.cropwise.MainActivity
 import com.example.cropwise.R
 import com.example.cropwise.SettingsActivity
 import com.example.cropwise.rating.AppRating
@@ -29,11 +30,12 @@ class mainToolBar(private val context : Context, toolbar : Toolbar){
     fun setOnOptionsItemSelected(item: MenuItem): Boolean {
         val itemSelected = when (item.itemId) {
             R.id.menu_item_home -> {
-                displayComingSoon(context, "Home")
+                val intent = Intent(context, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                context.startActivity(intent)
                 true
             }
             R.id.menu_item_settings -> {
-
                 val intent = Intent(context, SettingsActivity::class.java)
                 context.startActivity(intent)
                 true
