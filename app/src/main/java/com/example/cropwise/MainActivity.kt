@@ -2,10 +2,13 @@ package com.example.cropwise
 
 import android.app.NotificationManager
 import android.content.Context
+import android.content.pm.ConfigurationInfo
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cropwise.actionbar.mainToolBar
 import com.example.cropwise.notification.mainNotification
@@ -20,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initOrientation()
+
         GO.mainActionBar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.main_toolBar)
         setSupportActionBar(GO.mainActionBar)
         mainToolBar = mainToolBar(this)
@@ -31,12 +36,20 @@ class MainActivity : AppCompatActivity() {
         Log.d("Main Activity", "END of override fun onCreate")
     }
 
-    private fun greetTheUser(){
-        mainNotification.sendNormal("Greetings!", "Welcome Back")
-    }
+    private fun initOrientation(){
+        var orientation = resources.configuration.orientation
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(GO.menuID, menu)
+        if(orientation != Configuration.ORIENTATION_PORTRAIT){
+                Toast.makeText(this, "Landscape Mode is on", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        private fun greetTheUser(){
+            mainNotification.sendNormal("Greetings!", "Welcome Back")
+        }
+
+        override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+            menuInflater.inflate(GO.menuID, menu)
         // GO.actionBarMenu.findItem(R.id.menu_item_home)?.isVisible = false
         return true
     }

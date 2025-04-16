@@ -13,6 +13,8 @@ class AppRating : AppCompatActivity(){
     // views
     private lateinit var ratingBar : RatingBar
     private lateinit var btnSubmitRating : Button
+    private lateinit var btnClearRating: Button
+    private lateinit var btnCancelRating : Button
 
     // savedPreference
     private var SP_name: String = "appRating"
@@ -51,6 +53,8 @@ class AppRating : AppCompatActivity(){
     private fun initViews(){
         ratingBar = findViewById(R.id.ratingBar)
         btnSubmitRating = findViewById(R.id.btnSubmitRating)
+        btnCancelRating = findViewById(R.id.btnCancelRating)
+        btnClearRating = findViewById(R.id.btnClearRating)
     }
 
     private fun initRatingBar(){
@@ -70,5 +74,9 @@ class AppRating : AppCompatActivity(){
 
             finish()
         }
+
+        btnClearRating.setOnClickListener{ratingBar.rating = 0.0.toFloat()}
+
+        btnCancelRating.setOnClickListener{finish()}
     }
 }
