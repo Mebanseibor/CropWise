@@ -3,11 +3,16 @@ package com.example.cropwise.rating
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.RatingBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cropwise.GO
 import com.example.cropwise.R
+import com.example.cropwise.actionbar.mainToolBar
+import com.example.cropwise.mainToolBar
 
 class AppRating : AppCompatActivity(){
     // views
@@ -30,6 +35,10 @@ class AppRating : AppCompatActivity(){
         initViews()
 
         initRatingBar()
+
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.main_toolBar_appRating)
+        setSupportActionBar(toolbar)
+        mainToolBar(this, toolbar)
     }
 
     private fun initFetchSharedPreferences(){
@@ -78,5 +87,20 @@ class AppRating : AppCompatActivity(){
         btnClearRating.setOnClickListener{ratingBar.rating = 0.0.toFloat()}
 
         btnCancelRating.setOnClickListener{finish()}
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(GO.menuID, menu)
+
+        val menuItemRating = menu?.findItem(R.id.menu_item_rating)
+        Log.d("App Rating", "Hiding rating button")
+        menuItemRating?.setVisible(false)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return mainToolBar.setOnOptionsItemSelected(item)
     }
 }

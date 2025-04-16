@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         GO.mainActionBar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.main_toolBar)
         setSupportActionBar(GO.mainActionBar)
-        mainToolBar = mainToolBar(this)
+        mainToolBar = mainToolBar(this, GO.mainActionBar)
 
         mainNotification = mainNotification(this)
         mainNotification.managerNotification = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -44,13 +44,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        private fun greetTheUser(){
-            mainNotification.sendNormal("Greetings!", "Welcome Back")
-        }
+    private fun greetTheUser(){
+        mainNotification.sendNormal("Greetings!", "Welcome Back")
+    }
 
-        override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-            menuInflater.inflate(GO.menuID, menu)
-        // GO.actionBarMenu.findItem(R.id.menu_item_home)?.isVisible = false
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(GO.menuID, menu)
+
+        GO.actionBarMenu = menu
+
+        val menuItemHome = menu?.findItem(R.id.menu_item_home)
+        Log.d("App Rating", "Hiding home button")
+        menuItemHome?.setVisible(false)
+
         return true
     }
 

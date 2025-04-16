@@ -5,6 +5,6 @@ import androidx.appcompat.widget.Toolbar
 
 object GO{
     lateinit var mainActionBar : Toolbar
-    lateinit var actionBarMenu : Menu
+    var actionBarMenu : Menu? = null
     var menuID : Int = R.menu.main_toolbar
 }
