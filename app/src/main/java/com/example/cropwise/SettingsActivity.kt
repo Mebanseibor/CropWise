@@ -2,13 +2,17 @@ package com.example.cropwise
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.cropwise.actionbar.mainToolBar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -19,6 +23,9 @@ class SettingsActivity : AppCompatActivity() {
 
     private lateinit var username: TextView
     private lateinit var email: TextView
+
+    // views
+    private lateinit var toolbar : Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +65,29 @@ class SettingsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        initToolbar()
+    }
+
+    private fun initToolbar(){
+        toolbar = findViewById(R.id.toolBar_setting)
+        setSupportActionBar(toolbar)
+    }
+
+    override fun onCreateOptionsMenu(menu : Menu?) : Boolean{
+        menuInflater.inflate(R.menu.main_toolbar, menu)
+
+        mainToolBar(this, toolbar)
+        toolbar.title = "Settings"
+
+        menu?.findItem(R.id.menu_item_settings)?.setVisible(false)
+        menu?.findItem(R.id.menu_item_rating)?.setVisible(false)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return mainToolBar.setOnOptionsItemSelected(item)
     }
 
     private fun logout() {

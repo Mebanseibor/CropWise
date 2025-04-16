@@ -10,7 +10,6 @@ import com.example.cropwise.R
 import com.example.cropwise.SettingsActivity
 import com.example.cropwise.rating.AppRating
 import com.example.cropwise.toast.displayAboutApp
-import com.example.cropwise.toast.displayComingSoon
 
 class mainToolBar(private val context : Context, toolbar : Toolbar){
 
