@@ -39,7 +39,12 @@ class Advice_Soil(private val context : Context) : Fragment() {
     }
 
     private fun initList(){
-        list = arrayOf("Types of soils", "Tilting soil", "Mixing soil")
+        list = arrayOf(
+            "Healthy soil is the foundation for strong plant growth",
+            "Regularly enrich soil with organic matter to improve fertility",
+            "Ensure proper drainage to prevent waterlogging and root damage"
+        )
+
         adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, list)
         listView.adapter = adapter
     }
