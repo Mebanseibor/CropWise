@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -25,6 +26,7 @@ class Track : AppCompatActivity() {
     // view
     private lateinit var frameLayout : FrameLayout
     private lateinit var toolBar_track : Toolbar
+    private lateinit var headerTitle : TextView
 
     // fragment
     private lateinit var fragMng : FragmentManager
@@ -39,6 +41,8 @@ class Track : AppCompatActivity() {
 
         initToolbar()
         loadTracking()
+
+        headerTitle.text = "Track\n" + inputCategory
     }
 
     private fun initGetExtras(){
@@ -53,6 +57,7 @@ class Track : AppCompatActivity() {
 
     private fun initViews(){
         frameLayout = findViewById(R.id.frameLayout)
+        headerTitle = findViewById(R.id.headerTitle)
 
         toolBar_track  = findViewById(R.id.toolBar_track)
     }

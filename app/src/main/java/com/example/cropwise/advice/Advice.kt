@@ -19,6 +19,8 @@ class Advice : AppCompatActivity() {
     // views
     private lateinit var frameLayout : FrameLayout
     private lateinit var toolBar_advice : Toolbar
+    private lateinit var headerTitle : TextView
+
     // fragment
     private lateinit var fragMng : FragmentManager
 
@@ -37,6 +39,8 @@ class Advice : AppCompatActivity() {
         loadAdvice()
 
         initToolbar()
+
+        headerTitle.text = "Advice on\n" + inputCategory
     }
 
     private fun initToolbar(){
@@ -72,6 +76,7 @@ class Advice : AppCompatActivity() {
 
     private fun initView(){
         frameLayout = findViewById(R.id.frameLayout)
+        headerTitle = findViewById(R.id.headerTitle)
     }
 
     private fun loadAdvice(){

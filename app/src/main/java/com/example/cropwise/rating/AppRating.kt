@@ -8,14 +8,13 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.RatingBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.example.cropwise.GO
 import com.example.cropwise.R
 import com.example.cropwise.actionbar.mainToolBar
 import com.example.cropwise.mainNotification
 import com.example.cropwise.mainToolBar
+import com.example.cropwise.toast.displayMsg
 
 class AppRating : AppCompatActivity(){
     // views
@@ -24,6 +23,7 @@ class AppRating : AppCompatActivity(){
     private lateinit var btnClearRating: Button
     private lateinit var btnCancelRating : Button
     private lateinit var headerTitle : TextView
+    private lateinit var textViewEmotion : TextView
 
     // savedPreference
     private var SP_name: String = "appRating"
@@ -35,8 +35,8 @@ class AppRating : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_apprating)
 
-        initFetchSharedPreferences()
         initViews()
+        initFetchSharedPreferences()
 
         initRatingBar()
         initToolBar()
@@ -54,11 +54,14 @@ class AppRating : AppCompatActivity(){
         sharedPref = getSharedPreferences(SP_name, MODE_PRIVATE)
 
 
-        val value_appRating = sharedPref.getString(keyAppRating, "0.0")
+        val value_appRating = sharedPref.getString(keyAppRating, null)
 
         if(value_appRating == null){
             Log.d("App Rating", "value_appRating was null")
             SP_appRating = 0.0.toFloat()
+
+            textViewEmotion.setText("")
+
             return
         }
 
@@ -73,6 +76,7 @@ class AppRating : AppCompatActivity(){
         btnSubmitRating = findViewById(R.id.btnSubmitRating)
         btnCancelRating = findViewById(R.id.btnCancelRating)
         btnClearRating = findViewById(R.id.btnClearRating)
+        textViewEmotion = findViewById(R.id.textViewEmotion)
 
         headerTitle = findViewById(R.id.headerTitle)
     }
@@ -81,7 +85,15 @@ class AppRating : AppCompatActivity(){
         ratingBar.rating = SP_appRating
 
         ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-            Toast.makeText(this, "New rating changed to ${ratingBar.rating}", Toast.LENGTH_SHORT).show()
+            Log.d("AppRating", "New rating changed to ${rating}")
+            var emotion = "default emotion"
+            if(rating > 4.0){ emotion = "😊" }
+            else if (rating > 3.0){ emotion = "😀" }
+            else if (rating > 2.0){ emotion = "🫤" }
+            else if (rating > 1.0){ emotion = "☹️" }
+            else if (rating >= 0.0){ emotion = "😟" }
+
+            textViewEmotion.setText(emotion)
         }
 
         btnSubmitRating.setOnClickListener{
@@ -92,11 +104,24 @@ class AppRating : AppCompatActivity(){
             editor.putString(keyAppRating, rating.toString())
             editor.apply()
 
-            Toast.makeText(this, "Thanks for rating us ${rating}", Toast.LENGTH_SHORT).show()
+            var toastTitle = "Thank You"
+            var toastBody = "Thank you for rating the app"
+            var colorId : Int? = resources.getColor(R.color.themeMainPrimaryLight)
 
-            if(rating >= 3.5){ mainNotification.sendNormal("Rating Appreciation", "Thank you for rating us a ${rating}!!\nWe appreciate that you like our application") }
-            else if(rating >= 2.0){ mainNotification.sendNormal("Rating Appreciation", "Thank you for rating us a ${rating}!!\nWe hope to serve you better") }
-            else { mainNotification.sendNormal("Rating Appreciation", "Thank you for rating us a ${rating}.\nSorry for the bad experience\nWe hope to deliver a better experience to you") }
+            if(rating >= 3.5){
+                mainNotification.sendNormal("Rating Appreciation", "Thank you for rating us a ${rating}!!\nWe appreciate that you like our application")
+            }
+            else if(rating >= 2.0){
+                mainNotification.sendNormal("Rating Appreciation", "Thank you for rating us a ${rating}!!\nWe hope to serve you better")
+                toastBody = toastBody + "\nWe hope to serve you better"
+            }
+            else {
+                mainNotification.sendNormal("Rating Appreciation", "Thank you for rating us a ${rating}.\nSorry for the bad experience\nWe hope to deliver a better experience to you")
+                toastBody = toastBody + "\nSorry for the bad experience\nWe hope to deliver a better experience to you"
+                colorId = resources.getColor(R.color.cancel)
+            }
+
+            displayMsg(this, toastTitle, toastBody, colorId)
 
             finish()
         }

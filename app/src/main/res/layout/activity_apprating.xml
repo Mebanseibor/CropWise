@@ -33,6 +33,19 @@
         android:orientation="vertical"
         >
 
+        <TextView
+            android:id="@+id/textViewEmotion"
+            android:layout_width="match_parent"
+            android:layout_height="64sp"
+            android:text="😀"
+            android:textSize="40sp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ratingBar"
+            />
+
         <RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"

@@ -17,7 +17,6 @@ class Advice_Soil(private val context: Context) : Fragment() {
 
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var listView: ListView
-    private lateinit var textViewTitle: TextView
     private val list = ArrayList<String>()
     private val db = FirebaseFirestore.getInstance()
     private var frag: View? = null
@@ -37,7 +36,6 @@ class Advice_Soil(private val context: Context) : Fragment() {
         listView.adapter = adapter
 
         fetchAdviceFromFirestore()
-        updateTitle()
 
         val footerView = layoutInflater.inflate(R.layout.footer_advice, null)
         listView.addFooterView(footerView)
@@ -46,7 +44,6 @@ class Advice_Soil(private val context: Context) : Fragment() {
     }
 
     private fun initViews() {
-        textViewTitle = frag!!.findViewById(R.id.textViewTitle)
         listView = frag!!.findViewById(R.id.listView_advice)
     }
 
@@ -64,9 +61,5 @@ class Advice_Soil(private val context: Context) : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Error: ${it.message}", Toast.LENGTH_SHORT).show()
             }
-    }
-
-    private fun updateTitle() {
-        textViewTitle.text = "Advice on Soil"
     }
 }
