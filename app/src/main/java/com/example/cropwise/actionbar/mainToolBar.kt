@@ -24,6 +24,8 @@ class mainToolBar(private val context : Context, toolbar : Toolbar){
             displayAboutApp(context)
             true
         }
+
+        toolbar.setLogo(R.drawable.cropwise_logo)
     }
 
     fun setOnOptionsItemSelected(item: MenuItem): Boolean {

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/themeMainNeutralLight"
+    >
+
+    <TextView
+        android:id="@+id/textViewReminderTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reminder"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/textViewReminderText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Default reminder test"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/btnAcknowledge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20sp"
+        android:text="I Acknowledge"
+        />
+
+</LinearLayout>

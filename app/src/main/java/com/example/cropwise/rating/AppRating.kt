@@ -14,6 +14,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.cropwise.GO
 import com.example.cropwise.R
 import com.example.cropwise.actionbar.mainToolBar
+import com.example.cropwise.mainNotification
 import com.example.cropwise.mainToolBar
 
 class AppRating : AppCompatActivity(){
@@ -86,10 +87,16 @@ class AppRating : AppCompatActivity(){
         btnSubmitRating.setOnClickListener{
             val editor = sharedPref.edit()
 
-            editor.putString(keyAppRating, ratingBar.rating.toString())
+            val rating = ratingBar.rating
+
+            editor.putString(keyAppRating, rating.toString())
             editor.apply()
 
-            Toast.makeText(this, "Thanks for rating us ${ratingBar.rating}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Thanks for rating us ${rating}", Toast.LENGTH_SHORT).show()
+
+            if(rating >= 3.5){ mainNotification.sendNormal("Rating Appreciation", "Thank you for rating us a ${rating}!!\nWe appreciate that you like our application") }
+            else if(rating >= 2.0){ mainNotification.sendNormal("Rating Appreciation", "Thank you for rating us a ${rating}!!\nWe hope to serve you better") }
+            else { mainNotification.sendNormal("Rating Appreciation", "Thank you for rating us a ${rating}.\nSorry for the bad experience\nWe hope to deliver a better experience to you") }
 
             finish()
         }
