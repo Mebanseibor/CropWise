@@ -51,8 +51,8 @@ class Advice : AppCompatActivity() {
 
         mainToolBar(this, toolBar_advice)
 
-        toolBar_advice.title = "Advice"
-        toolBar_advice.subtitle = inputCategory
+        toolBar_advice.title = ""
+        toolBar_advice.subtitle = ""
 
         return true
     }

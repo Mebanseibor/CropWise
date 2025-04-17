@@ -89,10 +89,11 @@ class SettingsActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.main_toolbar, menu)
 
         mainToolBar(this, toolbar)
-        toolbar.title = "Settings"
+        toolbar.title = ""
 
         menu?.findItem(R.id.menu_item_settings)?.setVisible(false)
         menu?.findItem(R.id.menu_item_rating)?.setVisible(false)
+
 
         return true
     }

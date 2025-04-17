@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity() {
         Log.d("App Rating", "Hiding home button")
         menuItemHome?.setVisible(false)
 
+        GO.mainActionBar.title = ""
+
         return true
     }
 

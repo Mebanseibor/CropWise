@@ -10,6 +10,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.cropwise.GO
 import com.example.cropwise.R
 import com.example.cropwise.actionbar.mainToolBar
@@ -46,8 +47,6 @@ class AppRating : AppCompatActivity(){
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.main_toolBar_appRating)
         setSupportActionBar(toolbar)
         mainToolBar(this, toolbar)
-
-        toolbar.subtitle = "App Rating"
     }
 
     private fun initFetchSharedPreferences(){
@@ -107,6 +106,12 @@ class AppRating : AppCompatActivity(){
         val menuItemRating = menu?.findItem(R.id.menu_item_rating)
         Log.d("App Rating", "Hiding rating button")
         menuItemRating?.setVisible(false)
+
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.main_toolBar_appRating)
+
+        toolbar.subtitle = ""
+        toolbar.title = ""
+
 
         return true
     }
