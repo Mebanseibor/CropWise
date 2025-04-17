@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.RatingBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cropwise.GO
@@ -20,6 +21,7 @@ class AppRating : AppCompatActivity(){
     private lateinit var btnSubmitRating : Button
     private lateinit var btnClearRating: Button
     private lateinit var btnCancelRating : Button
+    private lateinit var headerTitle : TextView
 
     // savedPreference
     private var SP_name: String = "appRating"
@@ -36,6 +38,8 @@ class AppRating : AppCompatActivity(){
 
         initRatingBar()
         initToolBar()
+
+        headerTitle.text = "App Rating"
     }
 
     private fun initToolBar(){
@@ -69,6 +73,8 @@ class AppRating : AppCompatActivity(){
         btnSubmitRating = findViewById(R.id.btnSubmitRating)
         btnCancelRating = findViewById(R.id.btnCancelRating)
         btnClearRating = findViewById(R.id.btnClearRating)
+
+        headerTitle = findViewById(R.id.headerTitle)
     }
 
     private fun initRatingBar(){
