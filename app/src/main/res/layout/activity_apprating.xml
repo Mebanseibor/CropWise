@@ -36,11 +36,24 @@
         <TextView
             android:id="@+id/textViewEmotion"
             android:layout_width="match_parent"
-            android:layout_height="64sp"
+            android:layout_height="wrap_content"
             android:text="😀"
             android:textSize="40sp"
             android:textAlignment="center"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/textViewRatingValue"
+            app:layout_constraintVertical_bias="1.0"
+            />
+
+        <TextView
+            android:id="@+id/textViewRatingValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2.5/5.0"
+            android:textSize="20sp"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/ratingBar"

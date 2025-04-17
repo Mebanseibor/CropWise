@@ -24,6 +24,7 @@ class AppRating : AppCompatActivity(){
     private lateinit var btnCancelRating : Button
     private lateinit var headerTitle : TextView
     private lateinit var textViewEmotion : TextView
+    private lateinit var textViewRatingValue : TextView
 
     // savedPreference
     private var SP_name: String = "appRating"
@@ -61,12 +62,15 @@ class AppRating : AppCompatActivity(){
             SP_appRating = 0.0.toFloat()
 
             textViewEmotion.setText("")
+            textViewRatingValue.setText("")
 
             return
         }
 
         Log.d("App Rating", "value_appRating was NOT null")
         SP_appRating = value_appRating.toFloat()
+
+        updateReactionBasedOnRating(SP_appRating)
 
         Log.d("App Rating", "SP_appRating = ${value_appRating.toFloat()}")
     }
@@ -77,8 +81,23 @@ class AppRating : AppCompatActivity(){
         btnCancelRating = findViewById(R.id.btnCancelRating)
         btnClearRating = findViewById(R.id.btnClearRating)
         textViewEmotion = findViewById(R.id.textViewEmotion)
+        textViewRatingValue = findViewById(R.id.textViewRatingValue)
 
         headerTitle = findViewById(R.id.headerTitle)
+    }
+
+    private fun updateReactionBasedOnRating(rating : Float){
+        var emotion = "default emotion"
+        if(rating > 4.0){ emotion = "😊" }
+        else if (rating > 3.0){ emotion = "😀" }
+        else if (rating > 2.0){ emotion = "🫤" }
+        else if (rating > 1.0){ emotion = "☹️" }
+        else if (rating >= 0.0){ emotion = "😟" }
+
+        textViewEmotion.setText(emotion)
+        textViewRatingValue.setText(rating.toString() + "/${ratingBar.max*ratingBar.stepSize}")
+        Log.d("AppRating", "ratingBar.max:\n${ratingBar.max}")
+        Log.d("AppRating", "ratingBar.stepSize\n${ratingBar.stepSize}")
     }
 
     private fun initRatingBar(){
@@ -86,14 +105,7 @@ class AppRating : AppCompatActivity(){
 
         ratingBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             Log.d("AppRating", "New rating changed to ${rating}")
-            var emotion = "default emotion"
-            if(rating > 4.0){ emotion = "😊" }
-            else if (rating > 3.0){ emotion = "😀" }
-            else if (rating > 2.0){ emotion = "🫤" }
-            else if (rating > 1.0){ emotion = "☹️" }
-            else if (rating >= 0.0){ emotion = "😟" }
-
-            textViewEmotion.setText(emotion)
+            updateReactionBasedOnRating(rating)
         }
 
         btnSubmitRating.setOnClickListener{

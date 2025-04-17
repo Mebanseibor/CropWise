@@ -27,8 +27,11 @@
 
 
 ## <p id='content-currentfeatures'>Current features 🌟</p>
-No notable features at the moment, check with us later, we hope to see you then!
+### Providing advise on farming
+- Daily Tips and some curated tips
 
+### Reminders
+Assists by keeping the farmer well informed
 
 ## <p id='content-plannedfeatures'>Planned features 🔮</p>
 ### Compatibility with lower android versions
@@ -51,9 +54,6 @@ Area covered
 
 ### Notifications
 Alerts of concerning weather phenomenon
-
-### Reminders
-Assists by keeping the farmer well informed
 
 ### Contact Numbers for local emergency services
 For quick and easy access to emergency services
