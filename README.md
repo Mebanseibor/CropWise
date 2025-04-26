@@ -7,6 +7,29 @@
 
 ### *An android application for smart farming advisory and precision farming companion*
 
+<div style="text-align: center;">
+  <img src="readme-assets/image/ezgif.com-resize.gif" 
+       style="width: 200px; height: auto;" alt="CropWise Emblem">
+</div>
+
+<div style="display: flex; justify-content: center; align-items: flex-start; gap: 16px; flex-wrap: nowrap; overflow-x: auto; padding: 8px;">
+  <img src="readme-assets/image/Screenshot_20250427_000113.jpg" style="height: 150px; width: auto;" alt="Screenshot 1">
+  <img src="readme-assets/image/Screenshot_20250427_000117.jpg" style="height: 150px; width: auto;" alt="Screenshot 2">
+  <img src="readme-assets/image/Screenshot_20250427_000123.jpg" style="height: 150px; width: auto;" alt="Screenshot 3">
+  <img src="readme-assets/image/Screenshot_20250427_000206.jpg" style="height: 150px; width: auto;" alt="Screenshot 4">
+  <img src="readme-assets/image/Screenshot_20250427_000216.jpg" style="height: 150px; width: auto;" alt="Screenshot 5">
+  <img src="readme-assets/image/Screenshot_20250427_000221.jpg" style="height: 150px; width: auto;" alt="Screenshot 6">
+  <img src="readme-assets/image/Screenshot_20250427_000227.jpg" style="height: 150px; width: auto;" alt="Screenshot 7">
+  <img src="readme-assets/image/Screenshot_20250427_000237.jpg" style="height: 150px; width: auto;" alt="Screenshot 8">
+  <img src="readme-assets/image/Screenshot_20250427_000245.jpg" style="height: 150px; width: auto;" alt="Screenshot 9">
+  <img src="readme-assets/image/Screenshot_20250427_000253.jpg" style="height: 150px; width: auto;" alt="Screenshot 10">
+  <img src="readme-assets/image/Screenshot_20250427_000258.jpg" style="height: 150px; width: auto;" alt="Screenshot 11">
+  <img src="readme-assets/image/Screenshot_20250427_000315.jpg" style="height: 150px; width: auto;" alt="Screenshot 12">
+  <img src="readme-assets/image/Screenshot_20250427_000401.jpg" style="height: 150px; width: auto;" alt="Screenshot 13">
+  <img src="readme-assets/image/Screenshot_20250427_000409.jpg" style="height: 150px; width: auto;" alt="Screenshot 14">
+  <img src="readme-assets/image/Screenshot_20250427_000411.jpg" style="height: 150px; width: auto;" alt="Screenshot 15">
+  <img src="readme-assets/image/Screenshot_20250427_000558.jpg" style="height: 150px; width: auto;" alt="Screenshot 16">
+</div>
 
 ## Table of Content
 | Content                                         |
@@ -18,13 +41,30 @@
 ## <p id='content-introduction'>Introduction 👋🏼</p>
 "*An android application for smart farming advisory and precision farming companion*"
 
-### Aim of the application
-#### A mobile app to enhance productivity and sustainability for farmers by offering them:
+## Contributors:
+<div>
+    <a href="https://github.com/Mebanseibor">
+        <img src="https://avatars.githubusercontent.com/u/117612868" 
+           style="width: 150px; height: auto;" alt="profile photo">
+    </a>
+    <br>
+    <a href="https://github.com/devanshudutta">
+        <img src="https://avatars.githubusercontent.com/u/108408165" 
+           style="width: 150px; height: auto;" alt="profile photo">
+    </a>
+</div>
+
+
+
+## Aim of the application
+### A mobile app to enhance productivity and sustainability for farmers by offering them:
 - Personalized agricultural advice
 - Crop management tips
 - Precision farming tools
 
 
+
+---
 
 ## <p id='content-currentfeatures'>Current features 🌟</p>
 ### Providing advise on farming
